@@ -1,0 +1,57 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  padding: 13px 18px;
+  background: rgba(10, 10, 16, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.trigger:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: rgba(10, 10, 18, 0.95);
+}
+
+.icon {
+  color: var(--clr-violet-400);
+  flex-shrink: 0;
+}
+
+.placeholder {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.shortcuts kbd {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 2px 6px;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .shortcuts { display: none; }
+}

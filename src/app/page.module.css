@@ -1,150 +1,179 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+/* ── Hero section ──────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  flex: 1;
   flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Very subtle scan lines texture */
+.scanLines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.006) 2px,
+    rgba(255, 255, 255, 0.006) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Hero layout: side by side on desktop ─────────────────── */
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
-
-.main {
-  display: flex;
-  flex: 1;
+  gap: 0;
   width: 100%;
-  max-width: 800px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6) var(--space-10);
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
 }
 
-.intro {
+/* Text block — centered below ecosystem */
+.heroText {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+  align-items: center;
+  text-align: center;
+  max-width: 680px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
+/* Ecosystem wrapper */
+.ecosystemWrap {
   width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  max-width: 1100px;
 }
 
-.ctas a {
+.ecosystemPlaceholder {
+  width: 100%;
+  height: 560px;
+}
+
+/* ── Headline ─────────────────────────────────────────────── */
+.heroHeadline {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-6);
+}
+
+.headlineTop {
+  color: var(--clr-white);
+}
+
+.headlineBottom {
+  background: linear-gradient(
+    105deg,
+    var(--clr-violet-400) 0%,
+    var(--clr-blue-400) 50%,
+    var(--clr-orange-400) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Subtitle ─────────────────────────────────────────────── */
+.heroSubtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--clr-white-dim);
+  line-height: 1.7;
+  max-width: 52ch;
+  margin-bottom: var(--space-8);
+}
+
+/* ── Search wrap ──────────────────────────────────────────── */
+.searchWrap {
+  width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+/* ── Stats ────────────────────────────────────────────────── */
+.stats {
+  display: flex;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
+  gap: var(--space-6);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statNumber {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-white-muted);
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.statDivider {
+  width: 1px;
+  height: 30px;
+  background: var(--clr-border);
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+/* ── Hero bottom fade ─────────────────────────────────────── */
+.heroFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--clr-black));
+  pointer-events: none;
+  z-index: 2;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .heroContent {
+    flex-direction: column;
+    padding: var(--space-12) var(--space-6) var(--space-8);
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .heroText {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+  .heroContent {
+    padding: var(--space-8) var(--space-4) var(--space-6);
   }
 
-  .intro {
-    gap: 16px;
+  .stats {
+    gap: var(--space-4);
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .statNumber {
+    font-size: 1.125rem;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
-}
-
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
 }

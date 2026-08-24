@@ -1,69 +1,75 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import type { Metadata } from 'next';
+import SearchTrigger from '@/components/CommandPalette/SearchTrigger';
+import ExploreSection from '@/components/ExploreSection/ExploreSection';
+import PopularTools from '@/components/PopularTools/PopularTools';
+import HeroEcosystemLoader from '@/components/Hero/HeroEcosystemLoader';
+import styles from './page.module.css';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Toolora — All the Tools. One Place.',
+  description:
+    'Toolora is a premium all-in-one digital tools platform for PDFs, images, text, development and security. Fast, simple and private.',
+};
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* ── Hero ─────────────────────────────────────────── */}
+      <section className={styles.hero} aria-label="Toolora hero">
+        {/* Scan-line texture */}
+        <div className={styles.scanLines} aria-hidden="true" />
+
+        <div className={styles.heroContent}>
+          {/* 3D Ecosystem — dominant visual centerpiece */}
+          <div className={styles.ecosystemWrap}>
+            <HeroEcosystemLoader />
+          </div>
+
+          {/* Hero text block below the ecosystem */}
+          <div className={styles.heroText}>
+            <h1 className={styles.heroHeadline}>
+              <span className={styles.headlineTop}>ALL THE TOOLS.</span>
+              <span className={styles.headlineBottom}>ONE PLACE.</span>
+            </h1>
+            <p className={styles.heroSubtitle}>
+              Powerful tools for your files, images, text, development and
+              security — designed to be fast, simple and private.
+            </p>
+
+            {/* Command palette trigger */}
+            <div className={styles.searchWrap}>
+              <SearchTrigger />
+            </div>
+
+            {/* Stats */}
+            <div className={styles.stats}>
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>20</span>
+                <span className={styles.statLabel}>Tools</span>
+              </div>
+              <div className={styles.statDivider} aria-hidden="true" />
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>5</span>
+                <span className={styles.statLabel}>Categories</span>
+              </div>
+              <div className={styles.statDivider} aria-hidden="true" />
+              <div className={styles.stat}>
+                <span className={styles.statNumber}>100%</span>
+                <span className={styles.statLabel}>Free</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Bottom gradient fade */}
+        <div className={styles.heroFade} aria-hidden="true" />
+      </section>
+
+      {/* ── Explore categories ────────────────────────────── */}
+      <ExploreSection />
+
+      {/* ── Popular tools ─────────────────────────────────── */}
+      <PopularTools />
+    </>
   );
 }

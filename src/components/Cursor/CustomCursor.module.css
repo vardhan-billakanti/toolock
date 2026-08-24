@@ -1,0 +1,52 @@
+/* Cursor elements are fixed, pointer-events: none so they don't block clicks */
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+.dotActive {
+  width: 8px;
+  height: 8px;
+  background: var(--clr-violet-400);
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ringActive {
+  width: 42px;
+  height: 42px;
+  border-color: rgba(124, 58, 237, 0.6);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.25);
+}
+
+/* Applied to <html> by the cursor component */
+:global(.custom-cursor-active),
+:global(.custom-cursor-active *) {
+  cursor: none !important;
+}

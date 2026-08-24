@@ -1,0 +1,172 @@
+.section {
+  padding: var(--space-24) 0;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+/* ── Grid ────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px)  { .grid { grid-template-columns: 1fr; } }
+
+/* ── Category card ─────────────────────────────────────────── */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  background: var(--clr-surface-3);
+  /* Inner highlight line at top — creates inner lighting feel */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Per-accent hover states: edge glow + lift */
+.accent-violet:hover {
+  border-color: rgba(124, 58, 237, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 44px rgba(124, 58, 237, 0.16);
+}
+.accent-blue:hover {
+  border-color: rgba(59, 130, 246, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 44px rgba(59, 130, 246, 0.14);
+}
+.accent-orange:hover {
+  border-color: rgba(249, 115, 22, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 44px rgba(249, 115, 22, 0.14);
+}
+.accent-amber:hover {
+  border-color: rgba(245, 158, 11, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 44px rgba(245, 158, 11, 0.14);
+}
+
+/* Corner accent glow */
+.cornerGlow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.accent-violet .cornerGlow { background: radial-gradient(circle, rgba(124, 58, 237, 0.28), transparent 70%); }
+.accent-blue   .cornerGlow { background: radial-gradient(circle, rgba(59, 130, 246, 0.26), transparent 70%); }
+.accent-orange .cornerGlow { background: radial-gradient(circle, rgba(249, 115, 22, 0.24), transparent 70%); }
+.accent-amber  .cornerGlow { background: radial-gradient(circle, rgba(245, 158, 11, 0.24), transparent 70%); }
+
+.card:hover .cornerGlow { opacity: 1; }
+
+/* ── Top row ─────────────────────────────────────────────────── */
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Icon ────────────────────────────────────────────────────── */
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: background 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.accent-violet .iconWrap { background: rgba(124, 58, 237, 0.10); color: var(--clr-violet-400); }
+.accent-blue   .iconWrap { background: rgba(59, 130, 246, 0.10);  color: var(--clr-blue-400); }
+.accent-orange .iconWrap { background: rgba(249, 115, 22, 0.10); color: var(--clr-orange-400); }
+.accent-amber  .iconWrap { background: rgba(245, 158, 11, 0.10); color: var(--clr-amber-400); }
+
+/* Icon brightens and scales on hover */
+.accent-violet:hover .iconWrap { background: rgba(124, 58, 237, 0.18); transform: scale(1.08); filter: brightness(1.2); }
+.accent-blue:hover   .iconWrap { background: rgba(59, 130, 246, 0.18);  transform: scale(1.08); filter: brightness(1.2); }
+.accent-orange:hover .iconWrap { background: rgba(249, 115, 22, 0.18); transform: scale(1.08); filter: brightness(1.2); }
+.accent-amber:hover  .iconWrap { background: rgba(245, 158, 11, 0.18); transform: scale(1.08); filter: brightness(1.2); }
+
+/* ── Tool count badge ────────────────────────────────────────── */
+.toolCount {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-white-subtle);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* ── Category name ───────────────────────────────────────────── */
+.catName {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.accent-violet:hover .catName { color: var(--clr-violet-300); }
+.accent-blue:hover   .catName { color: var(--clr-blue-400); }
+.accent-orange:hover .catName { color: var(--clr-orange-400); }
+.accent-amber:hover  .catName { color: var(--clr-amber-400); }
+
+/* ── Category description ────────────────────────────────────── */
+.catDesc {
+  font-size: 0.8rem;
+  color: var(--clr-white-muted);
+  line-height: 1.55;
+  flex: 1;
+}
+
+/* ── Card action ─────────────────────────────────────────────── */
+.cardAction {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-top: var(--space-2);
+  transition: gap 0.2s ease;
+}
+
+.accent-violet .cardAction { color: var(--clr-violet-400); }
+.accent-blue   .cardAction { color: var(--clr-blue-400); }
+.accent-orange .cardAction { color: var(--clr-orange-400); }
+.accent-amber  .cardAction { color: var(--clr-amber-400); }
+
+.card:hover .cardAction { gap: var(--space-3); }
+
+.arrow { transition: transform 0.2s ease; }
+.card:hover .arrow { transform: translateX(4px); }
