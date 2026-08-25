@@ -4,32 +4,46 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './CustomCursor.module.css';
 
 export default function CustomCursor() {
-  const dotRef  = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    // Disable on touch devices
+    // Disable on touch / coarse pointer devices
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
-    // Hide native cursor globally
-    document.documentElement.classList.add('custom-cursor-active');
-
     let rafId = 0;
-    let ringX = window.innerWidth / 2;
-    let ringY = window.innerHeight / 2;
-    let dotX  = ringX;
-    let dotY  = ringY;
-    let targetX = ringX;
-    let targetY = ringY;
+    let isRunning = false;
+    let ringX = -100;
+    let ringY = -100;
+    let targetX = -100;
+    let targetY = -100;
+
+    const tick = () => {
+      // Ring trails with smooth lerp
+      ringX += (targetX - ringX) * 0.18;
+      ringY += (targetY - ringY) * 0.18;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      }
+
+      const dist = Math.abs(targetX - ringX) + Math.abs(targetY - ringY);
+      if (dist > 0.15) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        isRunning = false;
+      }
+    };
 
     const onMove = (e: MouseEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
-    };
 
-    const onEnterInteractive = () => setActive(true);
-    const onLeaveInteractive = () => setActive(false);
+      if (!isRunning) {
+        isRunning = true;
+        rafId = requestAnimationFrame(tick);
+      }
+    };
 
     // Selector for interactive elements
     const INTERACTIVE = 'a, button, [role="button"], input, textarea, select, label, [tabindex]';
@@ -39,56 +53,21 @@ export default function CustomCursor() {
       setActive(!!el);
     };
 
-    document.addEventListener('mousemove', onMove,  { passive: true });
-    document.addEventListener('mouseover', onOver,  { passive: true });
-    document.addEventListener('mousedown', onEnterInteractive);
-    document.addEventListener('mouseup',   onLeaveInteractive);
-
-    const tick = () => {
-      // Dot follows instantly
-      dotX = targetX;
-      dotY = targetY;
-
-      // Ring follows with smooth lerp
-      ringX += (targetX - ringX) * 0.12;
-      ringY += (targetY - ringY) * 0.12;
-
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
-      }
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-      }
-
-      rafId = requestAnimationFrame(tick);
-    };
-
-    rafId = requestAnimationFrame(tick);
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseover', onOver, { passive: true });
 
     return () => {
-      cancelAnimationFrame(rafId);
-      document.documentElement.classList.remove('custom-cursor-active');
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseover', onOver);
-      document.removeEventListener('mousedown', onEnterInteractive);
-      document.removeEventListener('mouseup',   onLeaveInteractive);
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseover', onOver);
     };
   }, []);
 
   return (
-    <>
-      {/* Dot — instant position */}
-      <div
-        ref={dotRef}
-        className={`${styles.dot} ${active ? styles.dotActive : ''}`}
-        aria-hidden
-      />
-      {/* Ring — lags behind */}
-      <div
-        ref={ringRef}
-        className={`${styles.ring} ${active ? styles.ringActive : ''}`}
-        aria-hidden
-      />
-    </>
+    <div
+      ref={ringRef}
+      className={`${styles.cursorRing} ${active ? styles.cursorRingActive : ''}`}
+      aria-hidden="true"
+    />
   );
 }

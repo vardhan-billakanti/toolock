@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
-  ArrowLeft, Upload, Download, Lock, Zap,
+  ArrowLeft, ArrowRight, Upload, Download, Lock, Zap, Home,
   FilePlus2, Scissors, FileArchive, Images, ImageDown,
   Minimize2, Expand, RefreshCw, Crop, Eraser,
   Hash, Sparkles, CaseSensitive, GitCompare,
@@ -10,6 +10,7 @@ import {
   ShieldCheck, EyeOff, FileText, Image, Type, Code2, Shield,
 } from 'lucide-react';
 import { TOOLS, CATEGORIES } from '@/data/tools';
+import ToolRunner from '@/components/tools/ToolRunner';
 import styles from './tool.module.css';
 
 const TOOL_ICONS: Record<string, React.ElementType> = {
@@ -62,7 +63,7 @@ export async function generateMetadata({
   if (!tool) return { title: 'Tool Not Found' };
 
   return {
-    title: `${tool.name} — Toolora`,
+    title: `${tool.name} — Toolock`,
     description: tool.description,
   };
 }
@@ -97,10 +98,14 @@ export default async function ToolPage({
       <div className={styles.pageGlow} aria-hidden="true" />
 
       <div className="container">
-        {/* Breadcrumb */}
+        {/* Breadcrumb Navigation: Home / All Tools / [Category] / [Tool] */}
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-          <Link href="/tools" className={styles.breadcrumbLink}>
-            <ArrowLeft size={14} />
+          <Link href="/" className={styles.breadcrumbLink} title="Return to Home">
+            <Home size={13} />
+            Home
+          </Link>
+          <span className={styles.breadcrumbSep} aria-hidden="true">/</span>
+          <Link href="/tools" className={styles.breadcrumbLink} title="Browse All Tools">
             All Tools
           </Link>
           {category && (
@@ -109,13 +114,14 @@ export default async function ToolPage({
               <Link
                 href={`/categories/${category.slug}`}
                 className={styles.breadcrumbLink}
+                title={`Browse ${category.name} tools`}
               >
                 {category.name}
               </Link>
             </>
           )}
           <span className={styles.breadcrumbSep} aria-hidden="true">/</span>
-          <span className={styles.breadcrumbCurrent}>{tool.name}</span>
+          <span className={styles.breadcrumbCurrent} aria-current="page">{tool.name}</span>
         </nav>
 
         {/* Tool header */}
@@ -149,56 +155,9 @@ export default async function ToolPage({
           </div>
         </div>
 
-        {/* ── Tool workspace (shell / coming soon) ─────────── */}
-        <div className={styles.workspace}>
-          {/* Upload area */}
-          <div className={styles.uploadArea}>
-            <div className={styles.uploadIcon} aria-hidden="true">
-              <Upload size={32} strokeWidth={1.5} />
-            </div>
-            <h2 className={styles.uploadTitle}>Drop your file here</h2>
-            <p className={styles.uploadSubtitle}>
-              or click to browse from your device
-            </p>
-            <button className={`${styles.uploadBtn} ${styles[`btn-${accent}`]}`} type="button">
-              <Upload size={16} />
-              Select File
-            </button>
-            <p className={styles.uploadNote}>
-              Tool functionality coming soon — this page shows the Toolora shell architecture.
-            </p>
-          </div>
-
-          {/* Controls area (placeholder) */}
-          <div className={styles.controls}>
-            <h3 className={styles.controlsTitle}>Options</h3>
-            <div className={styles.controlRow}>
-              <div className={styles.controlPlaceholder} style={{ width: '60%' }} />
-              <div className={styles.controlPlaceholder} style={{ width: '30%' }} />
-            </div>
-            <div className={styles.controlRow}>
-              <div className={styles.controlPlaceholder} style={{ width: '45%' }} />
-              <div className={styles.controlPlaceholder} style={{ width: '45%' }} />
-            </div>
-          </div>
-
-          {/* Action button */}
-          <button
-            className={`${styles.actionBtn} ${styles[`btn-${accent}`]}`}
-            type="button"
-            disabled
-          >
-            <Zap size={16} />
-            Run {tool.name}
-          </button>
-
-          {/* Result area (placeholder) */}
-          <div className={styles.resultArea}>
-            <div className={styles.resultPlaceholder}>
-              <Download size={24} className={styles.resultIcon} />
-              <p>Your result will appear here</p>
-            </div>
-          </div>
+        {/* ── Tool Interactive Workspace Engine ───────────── */}
+        <div style={{ marginTop: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
+          <ToolRunner tool={tool} />
         </div>
 
         {/* Privacy note */}

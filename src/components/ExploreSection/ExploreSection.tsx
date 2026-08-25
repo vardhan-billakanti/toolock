@@ -17,7 +17,7 @@ export default function ExploreSection() {
       <div className="container">
         <div className={styles.header}>
           <span className="section-label">Categories</span>
-          <h2 className="section-title">Explore Toolora</h2>
+          <h2 className="section-title">Explore Toolock</h2>
           <p className="section-subtitle">
             Five powerful categories. 20 useful tools. All in one place.
           </p>

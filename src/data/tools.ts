@@ -1,5 +1,5 @@
 // ============================================================
-// Toolora — Centralized Tool Registry
+// Toolock — Centralized Tool Registry
 // All tools, categories and metadata live here.
 // Adding a new tool = adding one entry to TOOLS array.
 // ============================================================

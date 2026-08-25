@@ -288,3 +288,24 @@
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.2);
 }
+
+@media (max-width: 480px) {
+  .overlay {
+    padding-top: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .panel {
+    margin: 0;
+    max-height: 85vh;
+  }
+
+  .footerHint:not(:last-of-type) {
+    display: none;
+  }
+
+  .itemDesc {
+    display: none;
+  }
+}

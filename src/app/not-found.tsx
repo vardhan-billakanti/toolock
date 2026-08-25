@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import styles from './not-found.module.css';
 
 export const metadata: Metadata = {
-  title: '404 — Page Not Found | Toolora',
+  title: '404 — Page Not Found | Toolock',
 };
 
 export default function NotFound() {

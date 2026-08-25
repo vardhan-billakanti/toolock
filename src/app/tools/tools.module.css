@@ -1,26 +1,32 @@
 .page {
-  padding: var(--space-12) 0 var(--space-24);
+  padding: var(--space-8) 0 var(--space-20);
+  min-height: calc(100vh - var(--navbar-height));
 }
 
 /* ── Page header ────────────────────────────────────────────── */
 .pageHeader {
   text-align: center;
-  margin-bottom: var(--space-10);
-  padding-top: var(--space-8);
+  margin-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pageTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   color: var(--clr-white);
-  margin-bottom: var(--space-3);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-2);
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .pageDesc {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--clr-white-muted);
+  max-width: 48ch;
 }
 
 /* ── Toolbar ────────────────────────────────────────────────── */
@@ -99,13 +105,18 @@
   font-weight: 500;
   color: var(--clr-white-muted);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast), transform 0.1s ease;
 }
 
 .filterPill:hover {
   background: rgba(255, 255, 255, 0.05);
   color: var(--clr-white);
   border-color: var(--clr-border-hover);
+  transform: translateY(-1px);
+}
+
+.filterPill:active {
+  transform: translateY(0px) scale(0.97);
 }
 
 /* Active state */
@@ -136,6 +147,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-5);
   background: var(--clr-surface-3);
@@ -154,10 +166,14 @@
   transform: translateY(-4px);
 }
 
-.accent-violet:hover { border-color: var(--clr-violet-border); box-shadow: 0 12px 32px rgba(124,58,237,0.14); }
-.accent-blue:hover   { border-color: var(--clr-blue-border);   box-shadow: 0 12px 32px rgba(59,130,246,0.14); }
-.accent-orange:hover { border-color: var(--clr-orange-border); box-shadow: 0 12px 32px rgba(249,115,22,0.14); }
-.accent-amber:hover  { border-color: var(--clr-amber-border);  box-shadow: 0 12px 32px rgba(245,158,11,0.14); }
+.toolCard:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.accent-violet:hover { border-color: var(--clr-violet-border); box-shadow: 0 12px 32px rgba(124, 58, 237, 0.14); }
+.accent-blue:hover   { border-color: var(--clr-blue-border);   box-shadow: 0 12px 32px rgba(59, 130, 246, 0.14); }
+.accent-orange:hover { border-color: var(--clr-orange-border); box-shadow: 0 12px 32px rgba(249, 115, 22, 0.14); }
+.accent-amber:hover  { border-color: var(--clr-amber-border);  box-shadow: 0 12px 32px rgba(245, 158, 11, 0.14); }
 
 .cardGlow {
   position: absolute;
@@ -171,10 +187,10 @@
   transition: opacity var(--transition-smooth);
 }
 
-.accent-violet .cardGlow { background: radial-gradient(circle, rgba(124,58,237,0.2), transparent 70%); }
-.accent-blue   .cardGlow { background: radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%); }
-.accent-orange .cardGlow { background: radial-gradient(circle, rgba(249,115,22,0.2), transparent 70%); }
-.accent-amber  .cardGlow { background: radial-gradient(circle, rgba(245,158,11,0.2), transparent 70%); }
+.accent-violet .cardGlow { background: radial-gradient(circle, rgba(124, 58, 237, 0.2), transparent 70%); }
+.accent-blue   .cardGlow { background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%); }
+.accent-orange .cardGlow { background: radial-gradient(circle, rgba(249, 115, 22, 0.2), transparent 70%); }
+.accent-amber  .cardGlow { background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent 70%); }
 
 .toolCard:hover .cardGlow { opacity: 1; }
 
@@ -192,15 +208,18 @@
   justify-content: center;
   border-radius: var(--radius-md);
   flex-shrink: 0;
-  transition: background var(--transition-smooth);
+  transition: transform var(--transition-fast), filter var(--transition-fast);
 }
 
-.accent-violet .toolIcon { background: rgba(124,58,237,0.1); color: var(--clr-violet-400); }
-.accent-blue   .toolIcon { background: rgba(59,130,246,0.1);  color: var(--clr-blue-400); }
-.accent-orange .toolIcon { background: rgba(249,115,22,0.1); color: var(--clr-orange-400); }
-.accent-amber  .toolIcon { background: rgba(245,158,11,0.1); color: var(--clr-amber-400); }
+.accent-violet .toolIcon { background: rgba(124, 58, 237, 0.1); color: var(--clr-violet-400); }
+.accent-blue   .toolIcon { background: rgba(59, 130, 246, 0.1);  color: var(--clr-blue-400); }
+.accent-orange .toolIcon { background: rgba(249, 115, 22, 0.1); color: var(--clr-orange-400); }
+.accent-amber  .toolIcon { background: rgba(245, 158, 11, 0.1); color: var(--clr-amber-400); }
 
-.toolCard:hover .toolIcon { filter: brightness(1.2); }
+.toolCard:hover .toolIcon {
+  transform: scale(1.08);
+  filter: brightness(1.2);
+}
 
 .catBadge {
   display: inline-flex;
@@ -215,10 +234,10 @@
   border-radius: var(--radius-full);
 }
 
-.accent-violet .catBadge { background: rgba(124,58,237,0.1); color: var(--clr-violet-400); }
-.accent-blue   .catBadge { background: rgba(59,130,246,0.1);  color: var(--clr-blue-400); }
-.accent-orange .catBadge { background: rgba(249,115,22,0.1); color: var(--clr-orange-400); }
-.accent-amber  .catBadge { background: rgba(245,158,11,0.1); color: var(--clr-amber-400); }
+.accent-violet .catBadge { background: rgba(124, 58, 237, 0.1); color: var(--clr-violet-400); }
+.accent-blue   .catBadge { background: rgba(59, 130, 246, 0.1);  color: var(--clr-blue-400); }
+.accent-orange .catBadge { background: rgba(249, 115, 22, 0.1); color: var(--clr-orange-400); }
+.accent-amber  .catBadge { background: rgba(245, 158, 11, 0.1); color: var(--clr-amber-400); }
 
 .toolName {
   font-family: var(--font-display);
@@ -265,7 +284,7 @@
 .toolCard:hover .openTool { gap: 7px; }
 
 .arrow { transition: transform var(--transition-fast); }
-.toolCard:hover .arrow { transform: translateX(2px); }
+.toolCard:hover .arrow { transform: translateX(3px); }
 
 /* ── Empty state ─────────────────────────────────────────────── */
 .emptyState {
@@ -295,9 +314,14 @@
   font-family: var(--font-body);
   font-size: 0.875rem;
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), transform 0.15s ease;
 }
 
 .resetBtn:hover {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(124, 58, 237, 0.12);
+  transform: translateY(-1px);
+}
+
+.resetBtn:active {
+  transform: scale(0.97);
 }

@@ -5,8 +5,8 @@ import { CATEGORIES, TOOLS } from '@/data/tools';
 import styles from './categories.module.css';
 
 export const metadata: Metadata = {
-  title: 'All Categories — Toolora',
-  description: 'Browse all Toolora tool categories: PDF, Image, Text, Developer and Security tools.',
+  title: 'All Categories — Toolock',
+  description: 'Browse all Toolock tool categories: PDF, Image, Text, Developer and Security tools.',
 };
 
 const CAT_ICONS: Record<string, React.ElementType> = {
@@ -40,19 +40,23 @@ export default function CategoriesPage() {
                 className={`${styles.card} ${styles[`accent-${cat.accentColor}`]}`}
               >
                 <div className={styles.cardGlow} aria-hidden="true" />
-                <div className={`${styles.catIcon} ${styles[`icon-${cat.accentColor}`]}`}>
-                  <CatIcon size={28} strokeWidth={1.5} />
-                </div>
-                <h2 className={styles.catName}>{cat.name}</h2>
-                <p className={styles.catDesc}>{cat.description}</p>
-                <div className={styles.toolList}>
-                  {tools.map((t) => (
-                    <span key={t.id} className={styles.toolChip}>{t.name}</span>
-                  ))}
+                <div className={styles.cardContent}>
+                  <div className={`${styles.catIcon} ${styles[`icon-${cat.accentColor}`]}`}>
+                    <CatIcon size={26} strokeWidth={1.5} />
+                  </div>
+                  <h2 className={styles.catName}>{cat.name}</h2>
+                  <p className={styles.catDesc}>{cat.description}</p>
+                  <div className={styles.toolList}>
+                    {tools.map((t) => (
+                      <span key={t.id} className={styles.toolChip}>{t.name}</span>
+                    ))}
+                  </div>
                 </div>
                 <div className={styles.viewCat}>
-                  <span>{tools.length} tools</span>
-                  <ArrowRight size={14} className={styles.arrow} />
+                  <span className={styles.toolCountTag}>{tools.length} tools</span>
+                  <span className={styles.viewCatLink}>
+                    View category <ArrowRight size={14} className={styles.arrow} />
+                  </span>
                 </div>
               </Link>
             );

@@ -22,7 +22,7 @@ export default function Navbar() {
   }, []);
 
   const openSearch = () => {
-    window.dispatchEvent(new CustomEvent('toolora:open-search'));
+    window.dispatchEvent(new CustomEvent('toolock:open-search'));
     setMobileOpen(false);
   };
 
@@ -31,20 +31,20 @@ export default function Navbar() {
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
           {/* Brand — official logo + wordmark */}
-          <Link href="/" className={styles.brand} aria-label="Toolora home">
+          <Link href="/" className={styles.brand} aria-label="Toolock home">
             <div className={styles.logoWrap}>
               {/* Plain <img> — avoids next/image placeholder states */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
-                alt="Toolora"
+                alt="Toolock"
                 width={32}
                 height={32}
                 className={styles.logoImg}
                 draggable={false}
               />
             </div>
-            <span className={styles.wordmark}>TOOLORA</span>
+            <span className={styles.wordmark}>TOOLOCK</span>
           </Link>
 
           {/* Desktop nav links */}

@@ -6,16 +6,16 @@ import HeroEcosystemLoader from '@/components/Hero/HeroEcosystemLoader';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Toolora — All the Tools. One Place.',
+  title: 'Toolock — All the Tools. One Place.',
   description:
-    'Toolora is a premium all-in-one digital tools platform for PDFs, images, text, development and security. Fast, simple and private.',
+    'Toolock is a premium all-in-one digital tools platform for PDFs, images, text, development and security. Fast, simple and private.',
 };
 
 export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className={styles.hero} aria-label="Toolora hero">
+      <section className={styles.hero} aria-label="Toolock hero">
         {/* Scan-line texture */}
         <div className={styles.scanLines} aria-hidden="true" />
 

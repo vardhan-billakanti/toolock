@@ -1,0 +1,498 @@
+/* ============================================================
+   Toolock — Shared Tool Engine Design System
+   Pure black, sleek violet/blue & orange/amber glow,
+   High contrast, 60fps responsive UI components.
+   ============================================================ */
+
+.toolContainer {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Panels / Cards ────────────────────────────────────────── */
+.panel {
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: relative;
+  transition: border-color var(--transition-fast);
+}
+
+.panel:hover {
+  border-color: var(--clr-border-hover);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.panelTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.panelActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── Upload Zone ──────────────────────────────────────────── */
+.uploadZone {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.015);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.uploadZone:hover,
+.uploadZoneDragging {
+  border-color: var(--clr-violet-500);
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.uploadZoneDragging {
+  transform: scale(0.995);
+}
+
+.hiddenFileInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.uploadIconWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-violet-400);
+  margin-bottom: var(--space-3);
+  pointer-events: none;
+}
+
+.uploadText {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clr-white);
+  margin-bottom: var(--space-1);
+  pointer-events: none;
+}
+
+.uploadHint {
+  font-size: 0.82rem;
+  color: var(--clr-white-muted);
+  pointer-events: none;
+}
+
+.uploadBtnMock {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--clr-surface-4);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--clr-white-dim);
+  pointer-events: none;
+  font-weight: 500;
+}
+
+/* ── Preview Grid & Cards ─────────────────────────────────── */
+.previewContainer {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.fileCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--clr-surface-3);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  gap: var(--space-3);
+}
+
+.fileCardLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.fileThumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: #000;
+  border: 1px solid var(--clr-border);
+  flex-shrink: 0;
+}
+
+.fileInfo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fileName {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--clr-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+.fileMeta {
+  font-size: 0.76rem;
+  color: var(--clr-white-muted);
+}
+
+/* ── Controls Grid ────────────────────────────────────────── */
+.controlsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.controlLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--clr-white-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.select,
+.input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  background: var(--clr-surface-3);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  color: var(--clr-white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.select:focus,
+.input:focus {
+  border-color: var(--clr-violet-500);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: var(--space-3);
+  background: var(--clr-surface-3);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  color: var(--clr-white);
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.textarea:focus {
+  border-color: var(--clr-violet-500);
+}
+
+.rangeWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.rangeInput {
+  flex: 1;
+  accent-color: var(--clr-violet-500);
+  cursor: pointer;
+}
+
+.rangeValue {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--clr-violet-300);
+  min-width: 48px;
+  text-align: right;
+}
+
+/* ── Primary Action Buttons ───────────────────────────────── */
+.actionBtnRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: linear-gradient(135deg, var(--clr-violet-600), var(--clr-blue-600));
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--clr-white);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--clr-surface-3);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  color: var(--clr-white-dim);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btnSecondary:hover {
+  background: var(--clr-surface-4);
+  color: var(--clr-white);
+  border-color: var(--clr-border-hover);
+}
+
+.btnDanger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+  color: #f87171;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btnDanger:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+}
+
+/* ── Result Box ───────────────────────────────────────────── */
+.resultBox {
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  background: var(--clr-surface-1);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.resultStats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.resultStatItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.resultStatLabel {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clr-white-muted);
+}
+
+.resultStatVal {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-white);
+}
+
+.savedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: var(--radius-full);
+  color: #4ade80;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ── Feedback Badges / Alerts ─────────────────────────────── */
+.errorAlert {
+  padding: var(--space-3) var(--space-4);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  color: #fca5a5;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.successAlert {
+  padding: var(--space-3) var(--space-4);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--radius-md);
+  color: #86efac;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+/* ── Transparency Checkerboard ────────────────────────────── */
+.checkerboard {
+  background-color: #121218;
+  background-image: linear-gradient(45deg, #1c1c24 25%, transparent 25%),
+                    linear-gradient(-45deg, #1c1c24 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #1c1c24 75%),
+                    linear-gradient(-45deg, transparent 75%, #1c1c24 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* ── Mobile Responsive Refinements (320px–600px) ───────────── */
+@media (max-width: 600px) {
+  .panel {
+    padding: var(--space-4);
+  }
+
+  .uploadZone {
+    min-height: 160px;
+    padding: var(--space-6) var(--space-3);
+  }
+
+  .uploadIconWrap {
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--space-2);
+  }
+
+  .uploadText {
+    font-size: 0.92rem;
+  }
+
+  .uploadHint {
+    font-size: 0.76rem;
+  }
+
+  .controlsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .actionBtnRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+  }
+
+  .resultBox {
+    padding: var(--space-4);
+  }
+
+  .resultStats {
+    gap: var(--space-3);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

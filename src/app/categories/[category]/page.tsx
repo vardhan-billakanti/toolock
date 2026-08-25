@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
-  ArrowLeft, ArrowRight, Zap,
+  ArrowRight, Zap, Home,
   FilePlus2, Scissors, FileArchive, Images, ImageDown,
   Minimize2, Expand, RefreshCw, Crop, Eraser,
   Hash, Sparkles, CaseSensitive, GitCompare,
@@ -54,7 +54,7 @@ export async function generateMetadata({
   if (!cat) return { title: 'Category Not Found' };
 
   return {
-    title: `${cat.name} Tools — Toolora`,
+    title: `${cat.name} Tools — Toolock`,
     description: cat.description,
   };
 }
@@ -80,14 +80,18 @@ export default async function CategoryPage({
       <div className={styles.pageGlow} aria-hidden="true" />
 
       <div className="container">
-        {/* Breadcrumb */}
+        {/* Breadcrumb Navigation: Home / All Tools / [Category] */}
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-          <Link href="/tools" className={styles.breadcrumbLink}>
-            <ArrowLeft size={14} />
+          <Link href="/" className={styles.breadcrumbLink} title="Return to Home">
+            <Home size={13} />
+            Home
+          </Link>
+          <span className={styles.sep} aria-hidden="true">/</span>
+          <Link href="/tools" className={styles.breadcrumbLink} title="Browse All Tools">
             All Tools
           </Link>
-          <span className={styles.sep}>/</span>
-          <span className={styles.current}>{cat.name}</span>
+          <span className={styles.sep} aria-hidden="true">/</span>
+          <span className={styles.current} aria-current="page">{cat.name}</span>
         </nav>
 
         {/* Category header */}

@@ -5,48 +5,64 @@
   width: 100%;
   max-width: 520px;
   padding: 13px 18px;
-  background: rgba(10, 10, 16, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(10, 10, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   cursor: pointer;
   text-align: left;
   transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+    transform 0.15s cubic-bezier(0.2, 0, 0.2, 1),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .trigger:hover {
-  border-color: rgba(124, 58, 237, 0.4);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
-  background: rgba(10, 10, 18, 0.95);
+  transform: translateY(-2px);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12), 0 10px 32px rgba(124, 58, 237, 0.18);
+  background: rgba(14, 14, 24, 0.95);
+}
+
+.trigger:active {
+  transform: translateY(0px) scale(0.985);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--clr-violet-400);
+  outline-offset: 2px;
 }
 
 .icon {
   color: var(--clr-violet-400);
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.trigger:hover .icon {
+  transform: scale(1.1);
 }
 
 .placeholder {
   flex: 1;
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .shortcuts {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   flex-shrink: 0;
 }
 
 .shortcuts kbd {
   font-family: var(--font-body);
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   padding: 2px 6px;
   line-height: 1.4;

@@ -5,7 +5,7 @@ import styles from './SearchTrigger.module.css';
 
 export default function SearchTrigger() {
   const openSearch = () => {
-    window.dispatchEvent(new CustomEvent('toolora:open-search'));
+    window.dispatchEvent(new CustomEvent('toolock:open-search'));
   };
 
   return (
@@ -13,7 +13,7 @@ export default function SearchTrigger() {
       type="button"
       onClick={openSearch}
       className={styles.trigger}
-      aria-label="Search Toolora tools (Ctrl+K)"
+      aria-label="Search Toolock tools (Ctrl+K)"
     >
       <Search size={16} className={styles.icon} aria-hidden />
       <span className={styles.placeholder}>Search for a tool…</span>

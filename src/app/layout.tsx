@@ -13,31 +13,50 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://toolock.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   title: {
-    default: 'Toolora — All the Tools. One Place.',
-    template: '%s | Toolora',
+    default: 'Toolock — All the Tools. One Place.',
+    template: '%s | Toolock',
   },
   description:
-    'Toolora is a premium all-in-one digital tools platform for PDFs, images, text, development and security. Fast, simple and private.',
-  keywords: ['PDF tools', 'image tools', 'developer tools', 'text tools', 'online tools', 'Toolora'],
-  authors: [{ name: 'Toolora' }],
+    'Toolock is a premium all-in-one digital tools platform for PDFs, images, text, development and security. Fast, simple and private.',
+  keywords: ['PDF tools', 'image tools', 'developer tools', 'text tools', 'online tools', 'Toolock'],
+  authors: [{ name: 'Toolock', url: 'https://toolock.vercel.app' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Toolora',
-    title: 'Toolora — All the Tools. One Place.',
+    url: 'https://toolock.vercel.app',
+    siteName: 'Toolock',
+    title: 'Toolock — All the Tools. One Place.',
     description:
       'Premium tools for PDFs, images, text, development and security. All in one place.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Toolora — All the Tools. One Place.',
+    title: 'Toolock — All the Tools. One Place.',
     description:
       'Premium tools for PDFs, images, text, development and security. All in one place.',
   },
   robots: {
     index: true,
     follow: true,
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Toolock',
+  url: 'https://toolock.vercel.app',
+  description:
+    'Toolock is a premium all-in-one digital tools platform for PDFs, images, text, development and security. Fast, simple and private.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://toolock.vercel.app/tools?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
   },
 };
 
@@ -51,6 +70,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         <Navbar />

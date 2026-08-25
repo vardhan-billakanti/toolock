@@ -95,8 +95,8 @@ export default function CommandPalette() {
   // Open via custom event (dispatched by SearchTrigger)
   useEffect(() => {
     const handler = () => setOpen(true);
-    window.addEventListener('toolora:open-search', handler);
-    return () => window.removeEventListener('toolora:open-search', handler);
+    window.addEventListener('toolock:open-search', handler);
+    return () => window.removeEventListener('toolock:open-search', handler);
   }, []);
 
   // Ctrl/Cmd+K shortcut
@@ -181,7 +181,7 @@ export default function CommandPalette() {
   const hasResults = results.length > 0;
 
   return (
-    <div className={styles.overlay} onClick={close} role="dialog" aria-modal aria-label="Search Toolora tools">
+    <div className={styles.overlay} onClick={close} role="dialog" aria-modal aria-label="Search Toolock tools">
       <div className={styles.panel} onClick={e => e.stopPropagation()}>
 
         {/* ── Search input bar ─────────────────────────────── */}

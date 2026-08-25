@@ -30,6 +30,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-5) var(--space-5);
   background: var(--clr-surface-3);
@@ -46,7 +47,11 @@
 }
 
 .card:hover {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-4px);
+}
+
+.card:active {
+  transform: translateY(-1px) scale(0.99);
 }
 
 /* Accent variants */
@@ -96,19 +101,23 @@
 
 /* Tool icon */
 .toolIconWrap {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  transition: background var(--transition-smooth), color var(--transition-smooth);
+  transition: background var(--transition-smooth), color var(--transition-smooth), transform 0.2s ease;
 }
 
 .accent-violet .toolIconWrap { background: rgba(124, 58, 237, 0.1); color: var(--clr-violet-400); }
 .accent-blue   .toolIconWrap { background: rgba(59, 130, 246, 0.1);  color: var(--clr-blue-400); }
 .accent-orange .toolIconWrap { background: rgba(249, 115, 22, 0.1); color: var(--clr-orange-400); }
 .accent-amber  .toolIconWrap { background: rgba(245, 158, 11, 0.1); color: var(--clr-amber-400); }
+
+.card:hover .toolIconWrap {
+  transform: scale(1.06);
+}
 
 .accent-violet:hover .toolIconWrap { background: rgba(124, 58, 237, 0.18); }
 .accent-blue:hover   .toolIconWrap { background: rgba(59, 130, 246, 0.18); }
@@ -167,14 +176,18 @@
   color: var(--clr-white-muted);
 }
 
+/* Open link with smooth sliding animation */
 .openLink {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 5px;
   font-family: var(--font-body);
   font-size: 0.8rem;
-  font-weight: 500;
-  transition: gap var(--transition-fast);
+  font-weight: 600;
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0, 0.2, 1),
+    filter 0.22s ease,
+    color 0.22s ease;
 }
 
 .accent-violet .openLink { color: var(--clr-violet-400); }
@@ -182,11 +195,15 @@
 .accent-orange .openLink { color: var(--clr-orange-400); }
 .accent-amber  .openLink { color: var(--clr-amber-400); }
 
-.card:hover .openLink { gap: 8px; }
-
 .arrow {
-  transition: transform var(--transition-fast);
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0.2, 1);
 }
+
+.card:hover .openLink {
+  transform: translateX(4px);
+  filter: brightness(1.22);
+}
+
 .card:hover .arrow {
   transform: translateX(3px);
 }

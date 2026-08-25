@@ -1,7 +1,7 @@
 /* ============================================================
-   Toolora — Global Design System
+   Toolock — Global Design System
    Pure black background, violet/blue/orange/amber palette
-   derived from the official Toolora logo.
+   derived from the official Toolock logo.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
@@ -113,7 +113,6 @@ html {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -189,9 +188,9 @@ img, video { display: block; max-width: 100%; }
 .section-label {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--clr-violet-400);
   margin-bottom: var(--space-3);
@@ -199,7 +198,7 @@ img, video { display: block; max-width: 100%; }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
   font-weight: 700;
   color: var(--clr-white);
   margin-bottom: var(--space-3);
@@ -226,7 +225,7 @@ img, video { display: block; max-width: 100%; }
   box-shadow: var(--shadow-violet);
 }
 
-/* ── Button base ──────────────────────────────────────────── */
+/* ── Button base with micro-interactions ──────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -234,13 +233,17 @@ img, video { display: block; max-width: 100%; }
   padding: var(--space-3) var(--space-6);
   font-family: var(--font-display);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: all var(--transition-smooth);
+  transition: all var(--transition-smooth), transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
   white-space: nowrap;
   user-select: none;
+}
+
+.btn:active {
+  transform: translateY(0px) scale(0.975);
 }
 
 .btn-primary {
@@ -249,9 +252,13 @@ img, video { display: block; max-width: 100%; }
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  opacity: 0.95;
+  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0px) scale(0.975);
 }
 
 .btn-ghost {
@@ -264,6 +271,11 @@ img, video { display: block; max-width: 100%; }
   background: var(--clr-surface-3);
   color: var(--clr-white);
   border-color: var(--clr-border-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  transform: translateY(0px) scale(0.975);
 }
 
 /* ── Privacy badge ────────────────────────────────────────── */
@@ -298,13 +310,13 @@ img, video { display: block; max-width: 100%; }
 
 /* ── Page entrance animation ─────────────────────────────────── */
 .page-enter {
-  animation: pageEnter 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation: pageEnter 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -313,7 +325,7 @@ img, video { display: block; max-width: 100%; }
 }
 
 /* ── Hide Next.js dev toolbar ────────────────────────────────── */
-/* The floating dev badge/indicator must not appear in the Toolora UI */
+/* The floating dev badge/indicator must not appear in the Toolock UI */
 nextjs-portal,
 [data-nextjs-dialog-overlay],
 [data-nextjs-toast],
@@ -324,7 +336,6 @@ nextjs-portal,
 }
 
 /* ── Next.js 16: prevent smooth scroll on route change ──────── */
-/* Suppress the warning by delegating smooth scroll to specific elements */
 html {
   scroll-behavior: auto;
 }
@@ -340,4 +351,3 @@ html {
     animation: none !important;
   }
 }
-

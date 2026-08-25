@@ -1,7 +1,8 @@
 .page {
-  padding: var(--space-8) 0 var(--space-24);
+  padding: var(--space-8) 0 var(--space-20);
   position: relative;
   overflow: hidden;
+  min-height: calc(100vh - var(--navbar-height));
 }
 
 .pageGlow {
@@ -26,7 +27,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   position: relative;
   z-index: 1;
 }
@@ -35,7 +36,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--clr-white-muted);
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -43,21 +44,21 @@
 
 .breadcrumbLink:hover { color: var(--clr-white); }
 .sep   { font-size: 0.8rem; color: var(--clr-white-subtle); }
-.current { font-size: 0.8rem; color: var(--clr-white-dim); }
+.current { font-size: 0.82rem; color: var(--clr-white-dim); font-weight: 500; }
 
 /* ── Category header ─────────────────────────────────────────── */
 .catHeader {
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
   position: relative;
   z-index: 1;
 }
 
 .catIcon {
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,13 +75,15 @@
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: var(--space-2);
+  color: var(--clr-white);
+  margin-bottom: var(--space-1);
 }
 
 .catDesc {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--clr-white-dim);
   max-width: 52ch;
+  line-height: 1.5;
 }
 
 /* ── Tool grid ───────────────────────────────────────────────── */
@@ -92,13 +95,14 @@
   z-index: 1;
 }
 
-@media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px)  { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 960px)  { .grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); } }
+@media (max-width: 600px)  { .grid { grid-template-columns: 1fr; gap: var(--space-4); } }
 
 .toolCard {
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-6);
   background: var(--clr-surface-3);
@@ -114,6 +118,7 @@
 }
 
 .toolCard:hover { transform: translateY(-4px); }
+.toolCard:active { transform: translateY(-1px) scale(0.99); }
 
 .accent-violet .toolCard:hover { border-color: var(--clr-violet-border); box-shadow: 0 12px 40px rgba(124,58,237,0.15); }
 .accent-blue   .toolCard:hover { border-color: var(--clr-blue-border);   box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
@@ -146,8 +151,8 @@
 }
 
 .toolIcon {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,9 +177,10 @@
 
 .toolName {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--clr-white);
+  line-height: 1.3;
 }
 
 .toolDesc {
@@ -189,8 +195,8 @@
   align-items: center;
   gap: 5px;
   font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   transition: gap var(--transition-fast);
   margin-top: var(--space-2);
 }

@@ -23,14 +23,14 @@ export default function Footer() {
             <div className={styles.logoWrap}>
               <Image
                 src="/logo.png"
-                alt="Toolora"
+                alt="Toolock"
                 width={36}
                 height={36}
                 className={styles.logo}
               />
             </div>
             <div className={styles.brandText}>
-              <span className={styles.wordmark}>TOOLORA</span>
+              <span className={styles.wordmark}>TOOLOCK</span>
               <span className={styles.tagline}>ALL THE TOOLS. ONE PLACE.</span>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {year} Toolora. All rights reserved.
+            © {year} Toolock. All rights reserved.
           </p>
           <p className={styles.madeWith}>
             Built for productivity. Designed for precision.

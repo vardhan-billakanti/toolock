@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   // Disable the development-mode floating build indicator
-  // so it never appears as part of the Toolora UI
+  // so it never appears as part of the Toolock UI
   devIndicators: false,
 };
 
