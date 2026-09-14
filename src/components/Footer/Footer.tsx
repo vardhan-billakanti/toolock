@@ -10,8 +10,6 @@ const FOOTER_LINKS = [
 ];
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       <div className={styles.divider} aria-hidden="true" />
@@ -45,13 +43,24 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom creator credit */}
         <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            © {year} Toolock. All rights reserved.
-          </p>
-          <p className={styles.madeWith}>
+          <p className={styles.creditTagline}>
             Built for productivity. Designed for precision.
+          </p>
+          <p className={styles.creditAuthor}>
+            <span className={styles.creditPrefix}>Designed &amp; Developed by</span>{' '}
+            <a
+              href="https://vardhanbillakanti.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.creatorLink}
+            >
+              Billakanti Jaya Vardhan
+            </a>
+          </p>
+          <p className={styles.creditCopyright}>
+            © 2026 · All Rights Reserved
           </p>
         </div>
       </div>
